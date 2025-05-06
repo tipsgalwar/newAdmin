@@ -91,7 +91,7 @@ function displayBlogs(blogs) {
       <div class="card h-100" style="border: none; transition: transform 0.3s;">
         <a href="/blog-details?id=${blog._id}" class="text-decoration-none text-dark">
           <div style="height: 200px; overflow: hidden;">
-            <img src="http://localhost:5000/${blog.image1}"
+            <img src="https://admin-backend-wbbc.onrender.com/api/blogs/${blog.image1}"
                  class="img-fluid w-100 h-100"
                  style="object-fit: cover;"
                  alt="${blog.title}">
