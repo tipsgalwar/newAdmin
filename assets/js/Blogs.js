@@ -29,7 +29,7 @@ async function uploadBlog() {
   formData.append("content2", content2);
 
   try {
-    let response = await fetch("http://localhost:5000/api/blogs", {
+    let response = await fetch("https://admin-backend-wbbc.onrender.com/api/blogs", {
       method: "POST",
       body: formData,
     });
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", fetchBlogs);
 
 async function fetchBlogs() {
   try {
-    const response = await fetch("http://localhost:5000/api/blogs");
+    const response = await fetch("https://admin-backend-wbbc.onrender.com/api/blogs");
     const blogs = await response.json();
     displayBlogs(blogs);
   } catch (error) {
@@ -139,7 +139,7 @@ async function searchBlog() {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/api/blogs");
+    const response = await fetch("https://admin-backend-wbbc.onrender.com/api/blogs");
     const allBlogs = await response.json();
 
     const matchedBlogs = allBlogs.filter((blog) =>
@@ -166,7 +166,7 @@ async function searchBlog() {
 
 async function editModal(blogId) {
   try {
-    const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`);
+    const response = await fetch(`https://admin-backend-wbbc.onrender.com/api/blogs/${blogId}`);
     const blog = await response.json();
 
     document.getElementById("editBlogId").value = blog._id;
@@ -207,7 +207,7 @@ async function updateBlog() {
   formData.append("content2", content2);
 
   try {
-    const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+    const response = await fetch(`https://admin-backend-wbbc.onrender.com/api/blogs/${blogId}`, {
       method: "PUT",
       body: formData,
     });
@@ -256,7 +256,7 @@ async function deleteBlog(blogId) {
 
   if (result.isConfirmed) {
     try {
-      const response = await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+      const response = await fetch(`https://admin-backend-wbbc.onrender.com/api/blogs/${blogId}`, {
         method: "DELETE",
       });
 
