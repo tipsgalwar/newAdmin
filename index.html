@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <title>Sign In | PlainAdmin Demo</title>
+
+    <!-- ========== Bootstrap CSS ========= -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- ======== main-wrapper start =========== -->
+    <main class="d-flex align-items-center min-vh-100 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-lg border-0 rounded-3">
+              <div class="card-body p-5">
+                <h4 class="text-center mb-3">Sign In</h4>
+                <p class="text-center text-muted mb-4">
+                  Start creating the best possible user experience for your customers.
+                </p>
+                <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                <form id="login-form">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      placeholder="Enter your username"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      placeholder="Enter your password"
+                      required
+                    />
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-6">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="checkbox-remember"
+                        />
+                        <label class="form-check-label" for="checkbox-remember">
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                      <a href="reset-password.html" class="text-decoration-none">
+                        Forgot Password?
+                      </a>
+                    </div>
+                  </div>
+                  <div class="d-grid mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                      Sign In
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+
+    <!-- ========= Bootstrap JS ========= -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+
+        // Check for existing token and validate it
+        const token = localStorage.getItem('token');
+        if (token) {
+          fetch('https://admin-backend-wbbc.onrender.com/api/protected', {
+            method: 'GET',
+            headers: {
+              'Authorization': token,
+            },
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.message.includes('Welcome')) {
+                window.location.href = 'Home.html';
+              } else {
+                localStorage.removeItem('token');
+              }
+            })
+            .catch(() => {
+              localStorage.removeItem('token');
+            });
+        }
+
+        // Handle login form submission
+        loginForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          errorMessage.classList.add('d-none');
+
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          const rememberMe = document.getElementById('checkbox-remember').checked;
+
+          try {
+            const response = await fetch('https://admin-backend-wbbc.onrender.com/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              if (rememberMe) {
+                localStorage.setItem('token', data.token);
+              }
+              window.location.href = 'Home.html';
+            } else {
+              errorMessage.textContent = data.message || 'Login failed';
+              errorMessage.classList.remove('d-none');
+            }
+          } catch (error) {
+            errorMessage.textContent = 'Server error. Please try again later.';
+            errorMessage.classList.remove('d-none');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
