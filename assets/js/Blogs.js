@@ -91,7 +91,7 @@ function displayBlogs(blogs) {
       <div class="card h-100" style="border: none; transition: transform 0.3s;">
         <a href="/blog-details?id=${blog._id}" class="text-decoration-none text-dark">
           <div style="height: 200px; overflow: hidden;">
-            <img src="https://admin-backend-wbbc.onrender.com/api/blogs/${blog.image1}"
+            <img src="https://admin-backend-wbbc.onrender.com/${blog.image1}"
                  class="img-fluid w-100 h-100"
                  style="object-fit: cover;"
                  alt="${blog.title}">
@@ -173,8 +173,8 @@ async function editModal(blogId) {
     document.getElementById("editTitle").value = blog.title;
     document.getElementById("editMetaDescription").value = blog.metaDescription;
     document.getElementById("editAuthor").value = blog.author;
-    document.getElementById("editContent1").value = blog.content1;
-    document.getElementById("editContent2").value = blog.content2;
+    document.getElementById("editContent1").innerHTML = blog.content1;
+    document.getElementById("editContent2").innerHTML = blog.content2;
   } catch (error) {
     console.error("Error fetching blog:", error);
     Swal.fire({
