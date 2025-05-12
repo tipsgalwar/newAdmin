@@ -383,7 +383,7 @@ function displayBlogs(blogs) {
 
     col.innerHTML = `
       <div class="card h-100" style="border: none; transition: transform 0.3s;">
-        <a href="/blog-details?id=${blog._id}" class="text-decoration-none text-dark">
+        <a href="/Blogs/blogdetail.html?id=${blog._id}" class="text-decoration-none text-dark">
           <div style="height: 200px; overflow: hidden;">
             <img src="${imageSrc}"
                  class="img-fluid w-100 h-100"
@@ -412,12 +412,12 @@ function displayBlogs(blogs) {
 }
 
 const searchButton = document.getElementById("searchBlog");
-searchButton.addEventListener("click", searchBlog);
-document.addEventListener("keydown", (e) => {
-  if (e.code === "Enter") {
-    searchBlog();
-  }
-});
+// searchButton.addEventListener("click", searchBlog);
+// document.addEventListener("keydown", (e) => {
+//   if (e.code === "Enter") {
+//     searchBlog();
+//   }
+// });
 
 async function searchBlog() {
   try {
