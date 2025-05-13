@@ -412,7 +412,7 @@ function displayBlogs(blogs) {
 }
 
 const searchButton = document.getElementById("searchBlog");
-// searchButton.addEventListener("click", searchBlog);
+searchButton.addEventListener("click", searchBlog);
 // document.addEventListener("keydown", (e) => {
 //   if (e.code === "Enter") {
 //     searchBlog();
