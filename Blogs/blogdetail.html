@@ -1,122 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <title>Blog Detail</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .content-image {
-            max-width: 50%;
-            height: auto;
-            float: left;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            border-radius: 0.25rem; /* Tailwind's rounded-md */
-        }
-    </style>
-</head>
-<body class="bg-gray-100">
-    <div class="container mt-8">
-        <div class="bg-white rounded-lg shadow-md p-8">
-            <button class="btn btn-secondary mb-4" onclick="window.history.back()">Back</button>
-            <h1 id="blog-title" class="text-3xl font-bold text-gray-800 mb-4"></h1>
-            <div id="blog-meta" class="text-gray-600 text-sm mb-4">
-                <span id="blog-author"></span> | <span id="blog-date"></span>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Blog Details | TIPS-G ALWAR</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicons -->
+    <link
+      rel="shortcut icon"
+      href="../assets/images/logo/aaaaaaaa.png"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="../websiteassets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../websiteassets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../websiteassets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="../websiteassets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../websiteassets/vendor/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS File -->
+    <link href="../websiteassets/css/blogdetail.css" rel="stylesheet" />
+    <link href="../websiteassets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="events-page">
+    <main class="main">
+      <!-- Detail Start -->
+      <div class="container-fluid py-5">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="mb-5">
+                <!-- Back Button -->
+                <a
+                  href="../Blogs/ManageBlogs.html"
+                  class="btn btn-outline-primary mb-4"
+                  style="border-color: #29206f; color: #29206f"
+                >
+                  <i class="bi bi-arrow-left"></i> Back to Blogs
+                </a>
+
+                <!-- Title and Author/Date Section -->
+                <div class="d-flex align-items-center mb-4">
+                  <div>
+                    <h1 id="blog-title" class="mb-1">Loading...</h1>
+                    <div class="d-flex align-items-center">
+                      <span id="blog-author" class="text-muted mr-2"
+                        >By Loading...</span
+                      >
+                      <span class="text-primary">|</span>
+                      <span id="blog-date" class="text-muted ml-2"
+                        >Loading...</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Featured Image -->
+                <img
+                  id="featured-image"
+                  class="img-fluid rounded w-100 mb-4"
+                  src=""
+                  alt="Featured Image"
+                />
+
+                <!-- Content -->
+                <div id="blog-content"></div>
+              </div>
             </div>
-            <img id="featured-image" src="" alt="Featured Image" class="w-full rounded-md mb-6 object-cover" style="max-height: 400px;">
-            <div id="blog-content" class="text-gray-700 leading-relaxed text-justify"></div>
+          </div>
         </div>
-    </div>
+      </div>
+      <!-- Detail End -->
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Preloader -->
+    <!-- <div id="preloader"></div> -->
+
+    <!-- Vendor JS Files -->
+    <script src="../websiteassets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../websiteassets/vendor/php-email-form/validate.js"></script>
+    <script src="../websiteassets/vendor/aos/aos.js"></script>
+    <script src="../websiteassets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../websiteassets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../websiteassets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Main JS File -->
+    <script src="../websiteassets/js/main.js"></script>
+
+    <!-- Blog Detail Script -->
     <script>
-        document.addEventListener("DOMContentLoaded", fetchBlogDetails);
+      document.addEventListener("DOMContentLoaded", fetchBlogDetails);
 
-        async function fetchBlogDetails() {
-            try {
-                // Get the blog ID from the URL query parameter
-                const urlParams = new URLSearchParams(window.location.search);
-                const blogId = urlParams.get("id");
+      async function fetchBlogDetails() {
+        try {
+          // Get the blog ID from the URL query parameter
+          const urlParams = new URLSearchParams(window.location.search);
+          const blogId = urlParams.get("id");
 
-                if (!blogId) {
-                    document.getElementById("blog-title").textContent = "Error: No Blog ID Provided";
-                    document.getElementById("blog-content").innerHTML = "<p>Please provide a valid blog ID.</p>";
-                    Swal.fire({
-                        title: "Error!",
-                        text: "No blog ID provided in the URL.",
-                        icon: "error",
-                    });
-                    return;
-                }
+          if (!blogId) {
+            document.getElementById("blog-title").textContent =
+              "Error: No Blog ID Provided";
+            document.getElementById("blog-content").innerHTML =
+              "<p>Please provide a valid blog ID.</p>";
+            Swal.fire({
+              title: "Error!",
+              text: "No blog ID provided in the URL.",
+              icon: "error",
+            });
+            return;
+          }
 
-                // Fetch blog data from the API
-                const response = await fetch(`https://admin-backend-wbbc.onrender.com/api/blogs/${blogId}`);
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        throw new Error("Blog not found");
-                    } else if (response.status === 503) {
-                        throw new Error("Service temporarily unavailable. Please try again later.");
-                    } else {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                }
-                const blog = await response.json();
-
-                // Update meta description
-                const metaDescription = document.querySelector('meta[name="description"]');
-                if (metaDescription) {
-                    metaDescription.setAttribute("content", blog.metaDescription);
-                }
-
-                // Update page title
-                document.title = `${blog.title} | TIPS-G ALWAR`;
-
-                // Update blog details
-                document.getElementById("blog-title").textContent = blog.title;
-                document.getElementById("blog-author").textContent = `By ${blog.author}`;
-                document.getElementById("blog-date").textContent = new Date(blog.createdAt).toLocaleDateString();
-
-                // Placeholder image URL
-                const placeholderImage = "https://via.placeholder.com/800x400.png?text=No+Image";
-
-                // Update featured image
-                const featuredImage = document.getElementById("featured-image");
-                featuredImage.src = blog.image1 || placeholderImage;
-                featuredImage.alt = blog.title;
-                featuredImage.onerror = () => {
-                    featuredImage.src = placeholderImage;
-                };
-
-                // Update content
-                const contentDiv = document.getElementById("blog-content");
-                contentDiv.innerHTML = `
-                    <p class="mb-4">${blog.content1.replace(/\r\n\r\n/g, "</p><p class='mb-4'>")}</p>
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-6 mb-3">More Insights</h2>
-                    <img
-                        class="content-image rounded-md"
-                        src="${blog.image2 || placeholderImage}"
-                        alt="Content Image"
-                        onerror="this.src='${placeholderImage}'"
-                    />
-                    <p>${blog.content2.replace(/\r\n\r\n/g, "</p><p class='mb-4'>")}</p>
-                    <div class="clearfix"></div>
-                `;
-            } catch (error) {
-                console.error("Error loading blog details:", error);
-                document.getElementById("blog-title").textContent = "Error Loading Blog";
-                document.getElementById("blog-content").innerHTML = "<p>Sorry, the blog could not be loaded. Please try again later.</p>";
-                Swal.fire({
-                    title: "Error!",
-                    text: error.message || "Failed to load blog details. Please try again later.",
-                    icon: "error",
-                });
+          // Fetch blog data from the API
+          const response = await fetch(
+            `https://admin-backend-wbbc.onrender.com/api/blogs/${blogId}`
+          );
+          if (!response.ok) {
+            if (response.status === 404) {
+              throw new Error("Blog not found");
+            } else if (response.status === 503) {
+              throw new Error(
+                "Service temporarily unavailable. Please try again later."
+              );
+            } else {
+              throw new Error(`HTTP error! Status: ${response.status}`);
             }
+          }
+          const blog = await response.json();
+
+          // Update meta description
+          const metaDescription = document.querySelector(
+            'meta[name="description"]'
+          );
+          if (metaDescription) {
+            metaDescription.setAttribute("content", blog.metaDescription);
+          }
+
+          // Update page title
+          document.title = `${blog.title} | TIPS-G ALWAR`;
+
+          // Update blog details
+          document.getElementById("blog-title").textContent = blog.title;
+          document.getElementById(
+            "blog-author"
+          ).textContent = `By ${blog.author}`;
+          document.getElementById("blog-date").textContent = new Date(
+            blog.createdAt
+          ).toLocaleDateString();
+
+          // Placeholder image URL
+          const placeholderImage =
+            "https://via.placeholder.com/300x200.png?text=No+Image";
+
+          // Update featured image
+          const featuredImage = document.getElementById("featured-image");
+          featuredImage.src = blog.image1 || placeholderImage;
+          featuredImage.alt = blog.title;
+          featuredImage.onerror = () => {
+            featuredImage.src = placeholderImage;
+          };
+
+          // Update content
+          const contentDiv = document.getElementById("blog-content");
+          contentDiv.innerHTML = `
+      <p>${blog.content1.replace(/\r\n\r\n/g, "</p><p>")}</p>
+      <h2 class="mb-4">More Insights</h2>
+      <img
+        class="img-fluid rounded w-50 float-left mr-4 mb-3"
+        src="${blog.image2 || placeholderImage}"
+        alt="Content Image"
+        onerror="this.src='${placeholderImage}'"
+      />
+      <p>${blog.content2.replace(/\r\n\r\n/g, "</p><p>")}</p>
+    `;
+        } catch (error) {
+          console.error("Error loading blog details:", error);
+          document.getElementById("blog-title").textContent =
+            "Error Loading Blog";
+          document.getElementById("blog-content").innerHTML =
+            "<p>Sorry, the blog could not be loaded. Please try again later.</p>";
+          Swal.fire({
+            title: "Error!",
+            text:
+              error.message ||
+              "Failed to load blog details. Please try again later.",
+            icon: "error",
+          });
         }
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -382,30 +382,26 @@ function displayBlogs(blogs) {
     const imageSrc = blog.image1 || placeholderImage;
 
     col.innerHTML = `
-      <div class="card h-100" style="border: none; transition: transform 0.3s;">
-        <a href="/Blogs/blogdetail.html?id=${blog._id}" class="text-decoration-none text-dark">
-          <div style="height: 200px; overflow: hidden;">
-            <img src="${imageSrc}"
-                 class="img-fluid w-100 h-100"
-                 style="object-fit: cover;"
-                 alt="${blog.title}"
-                 onerror="this.src='${placeholderImage}'">
-          </div>
-          <div class="card-body p-3" style="height: 200px; overflow: hidden;">
-            <h6 class="card-title">${blog.title}</h6>
-            <small class="text-muted d-block mb-2">
-              By ${blog.author} | ${new Date(blog.createdAt).toLocaleDateString()}
-            </small>
-            <p class="card-text" style="font-size: 0.9rem; overflow: hidden; text-align: justify;">
-              ${blog.content1.substring(0, 200)}...
-            </p>
-          </div>
-        </a>
-        <div class="card-footer bg-transparent border-top-0">
-          <button class="main-btn primary-btn btn-hover" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editModal('${blog._id}')">Edit</button>
-          <button class="main-btn danger-btn btn-hover" onclick="deleteBlog('${blog._id}')">Delete</button>
-        </div>
-      </div>`;
+    <a href="blogdetail.html?id=${blog._id}" class="text-decoration-none text-dark">
+<div class="card" style="width: 18rem;">
+  <img src="${imageSrc}" class="card-img-top" alt="${blog.title}" onerror="this.src='${placeholderImage}'">
+  <div class="card-body">
+    <h5 class="card-title">${blog.title}</h5>
+    <p class="card-text" style="font-size: 0.9rem;">
+      ${blog.content1.substring(0, 150)}...
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">By ${blog.author}</li>
+    <li class="list-group-item">${new Date(blog.createdAt).toLocaleDateString()}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="btn btn-primary px-5 py-3" data-bs-toggle="modal" data-bs-target="#editModal" onclick="editModal('${blog._id}')">Edit</a>
+    <a href="#" class="btn btn-danger px-4 py-3" onclick="deleteBlog('${blog._id}')">Delete</a>
+  </div>
+</div>
+</a>
+`;
 
     row.appendChild(col);
   });
